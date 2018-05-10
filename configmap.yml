@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  example_mac_url.csv: |
+    ac:63:be:35:74:ea,http://10.99.8.18/json.htm?type=command&param=switchlight&idx=36&switchcmd=Toggle
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: dashkube-urls
