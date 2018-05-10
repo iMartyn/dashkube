@@ -24,3 +24,4 @@ Stuff that should be done :
 
 Tips :
 - The curl command is just executed as `curl "$URL"` so if you want to do clever payload stuff, you could set your URL to have quotes in it and pass arguments in there.  The script only checks for `^$MAC,http` and accepts it, so have fun with shell injection!
+- Don't try to put the same MAC address in twice, it will almost certainly fail in interesting ways.
