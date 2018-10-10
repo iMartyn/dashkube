@@ -8,8 +8,10 @@ fi
 declare -A LASTSEEN
 DEBOUNCE_SECONDS=3
 
+INTERFACE=$(ifconfig | cut -f1 -d' ' | grep -v 'weave\|veth\|vxlan\|lo\|datapath\|docker' | tr -d '\n')
+
 mkfifo tcpdump_out
-tcpdump -v -i eth0 -n port 67 and port 68 -l -A > tcpdump_out & #| \
+tcpdump -v -i $INTERFACE -n port 67 and port 68 -l -A > tcpdump_out & #| \
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
   if echo $line | grep 'Client-Ethernet-Address' > /dev/null 2>&1; then
