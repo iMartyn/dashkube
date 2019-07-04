@@ -8,7 +8,8 @@ fi
 declare -A LASTSEEN
 DEBOUNCE_SECONDS=3
 
-INTERFACE=$(ifconfig | cut -f1 -d' ' | grep -v 'weave\|veth\|vxlan\|lo\|datapath\|docker' | tr -d '\n')
+DISCOVERED_INTERFACE=$(ifconfig | cut -f1 -d' ' | grep -v 'weave\|veth\|vxlan\|lo\|datapath\|docker' | tr -d '\n')
+INTERFACE="${INTERFACE:-$DISCOVERED_INTERFACE}"
 
 mkfifo tcpdump_out
 tcpdump -v -i $INTERFACE -n port 67 and port 68 -l -A > tcpdump_out & #| \
